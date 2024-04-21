@@ -9,7 +9,7 @@ type LoginButtonProps = {
   asChild?: boolean;
 };
 
-const LoginButton: React.FC<LoginButtonProps> = ({ children, mode = "redirect", asChild }) => {
+export const LoginButton: React.FC<LoginButtonProps> = ({ children, mode = "redirect", asChild }) => {
   const router = useRouter();
 
   const onClick = () => {
@@ -26,5 +26,3 @@ const LoginButton: React.FC<LoginButtonProps> = ({ children, mode = "redirect", 
     </span>
   );
 };
-
-export default LoginButton;
