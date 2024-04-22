@@ -32,7 +32,7 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
       },
     });
   } catch (error: any) {
-    return { error: "Internal error. " + error?.message || "" };
+    return { error: "Something went wrong! " + (error?.message || "") };
   }
 
   // TODO: Send verification token email

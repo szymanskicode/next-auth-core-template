@@ -16,25 +16,25 @@ import { login } from "@/actions/login";
 
 export const LoginForm = () => {
   const [isPending, startTransition] = useTransition();
-  const [error, setError] = useState<string>("");
-  const [success, setSuccess] = useState<string>("");
+  const [error, setError] = useState<string | undefined>(undefined);
+  const [success, setSuccess] = useState<string | undefined>(undefined);
 
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: undefined,
+      password: undefined,
     },
   });
 
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
-    setError("");
-    setSuccess("");
+    setError(undefined);
+    setSuccess(undefined);
 
     startTransition(() => {
       login(values).then((data) => {
-        setError(data.error || "");
-        setSuccess(data.success || "");
+        setError(data?.error);
+        // setSuccess(data?.success);
       });
     });
   };
