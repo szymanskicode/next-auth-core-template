@@ -5,6 +5,7 @@ import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+import { LOGIN_PAGE_URL } from "@/routes";
 import { RegisterSchema } from "@/schemas";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -44,7 +45,7 @@ export const RegisterForm = () => {
     <CardWrapper
       headerLabel="Create an account" //
       backButtonLabel="Already have an account?"
-      backButtonHref="/auth/login"
+      backButtonHref={LOGIN_PAGE_URL}
       showSocial
     >
       <Form {...form}>

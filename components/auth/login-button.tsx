@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
+import { LOGIN_PAGE_URL } from "@/routes";
 
 type LoginButtonProps = {
   children: React.ReactNode;
@@ -13,7 +14,7 @@ export const LoginButton: React.FC<LoginButtonProps> = ({ children, mode = "redi
   const router = useRouter();
 
   const onClick = () => {
-    router.push("auth/login");
+    router.push(LOGIN_PAGE_URL);
   };
 
   if (mode === "modal") {
