@@ -8,7 +8,7 @@ import { Social } from "@/components/auth/social";
 import { BackButton } from "@/components/auth/back-button";
 
 type CardWrapperProps = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   headerLabel: string;
   backButtonLabel: string;
   backButtonHref: string;
@@ -21,7 +21,7 @@ export const CardWrapper: React.FC<CardWrapperProps> = ({ children, headerLabel,
       <CardHeader>
         <Header label={headerLabel} />
       </CardHeader>
-      <CardContent>{children}</CardContent>
+      {children && <CardContent>{children}</CardContent>}
       {showSocial && (
         <CardFooter>
           <Social />
