@@ -24,14 +24,13 @@ export const {
     },
   },
   callbacks: {
-    async signIn({ user }) {
-      // if (!user.id) return false;
-
-      // const existingUser = await getUserById(user.id);
-
-      // if (!existingUser || !existingUser.emailVerified) {
-      //   return false;
-      // }
+    async signIn({ user, account }) {
+      // Prevent sign in without email verification
+      if (account?.provider === "credentials") {
+        if (user.id === undefined) return false;
+        const existinUser = await getUserById(user.id);
+        if (!existinUser?.emailVerified) return false;
+      }
 
       return true;
     },
