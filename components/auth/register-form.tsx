@@ -17,8 +17,8 @@ import { register } from "@/actions/register";
 
 export const RegisterForm = () => {
   const [isPending, startTransition] = useTransition();
-  const [error, setError] = useState<string>("");
-  const [success, setSuccess] = useState<string>("");
+  const [error, setError] = useState<string | undefined>();
+  const [success, setSuccess] = useState<string | undefined>();
 
   const form = useForm<z.infer<typeof RegisterSchema>>({
     resolver: zodResolver(RegisterSchema),
@@ -30,13 +30,13 @@ export const RegisterForm = () => {
   });
 
   const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
-    setError("");
-    setSuccess("");
+    setError(undefined);
+    setSuccess(undefined);
 
     startTransition(() => {
       register(values).then((data) => {
-        setError(data.error || "");
-        setSuccess(data.success || "");
+        setError(data.error);
+        setSuccess(data.success);
       });
     });
   };

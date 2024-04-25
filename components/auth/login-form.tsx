@@ -20,8 +20,8 @@ export const LoginForm = () => {
   const urlError = searchParams.get("error") === "OAuthAccountNotLinked" ? "Email already in use with different provider." : "";
 
   const [isPending, startTransition] = useTransition();
-  const [error, setError] = useState<string | undefined>(undefined);
-  const [success, setSuccess] = useState<string | undefined>(undefined);
+  const [error, setError] = useState<string | undefined>();
+  const [success, setSuccess] = useState<string | undefined>();
 
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
@@ -37,8 +37,8 @@ export const LoginForm = () => {
 
     startTransition(() => {
       login(values).then((data) => {
-        setError(data?.error);
-        setSuccess(data?.success);
+        setError(data.error);
+        setSuccess(data.success);
       });
     });
   };
