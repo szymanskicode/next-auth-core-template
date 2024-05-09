@@ -51,35 +51,39 @@ export const NewPasswordForm = () => {
     >
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          <div className="space-y-4">
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field} //
-                      placeholder="******"
-                      type="password"
-                      disabled={isPending}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
+          {!success && !error && (
+            <div className="space-y-4">
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Password</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field} //
+                        placeholder="******"
+                        type="password"
+                        disabled={isPending}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+          )}
           <FormError message={error} />
           <FormSuccess message={success} />
-          <Button
-            type="submit" //
-            className="w-full"
-            disabled={isPending}
-          >
-            Reset password
-          </Button>
+          {!success && !error && (
+            <Button
+              type="submit" //
+              className="w-full"
+              disabled={isPending}
+            >
+              Reset password
+            </Button>
+          )}
         </form>
       </Form>
     </CardWrapper>
