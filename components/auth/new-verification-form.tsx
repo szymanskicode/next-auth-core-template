@@ -26,8 +26,8 @@ export const NewVerificationForm: React.FC = () => {
 
     newVerification(token)
       .then((data) => {
-        setSuccess(data.success);
-        setError(data.error);
+        setSuccess(data?.success);
+        setError(data?.error);
       })
       .catch((error: any) => {
         console.error(error);
